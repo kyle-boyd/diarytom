@@ -1,26 +1,27 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --parchment: #f5f0e6;
+  --parchment-dark: #ebe4d4;
+  --ink: #1a1510;
+  --ink-faint: rgba(26, 21, 16, 0.05);
+  --ink-mid: rgba(26, 21, 16, 0.6);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-parchment: var(--parchment);
+  --color-ink: var(--ink);
+  --font-serif: var(--font-fraunces);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--parchment);
+  color: var(--ink);
+  font-family: var(--font-fraunces), Georgia, serif;
+}
+
+/* Prevent selection flash on ghost text */
+.ghost-text {
+  user-select: none;
+  pointer-events: none;
 }
