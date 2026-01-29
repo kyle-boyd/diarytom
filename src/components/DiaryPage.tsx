@@ -103,7 +103,11 @@ export default function DiaryPage() {
 
     try {
       const history = [...messages, { role: "user" as const, content: text }];
-      const res = await fetch("/api/chat", {
+      const apiBase =
+        typeof process.env.NEXT_PUBLIC_CHAT_API_URL === "string"
+          ? process.env.NEXT_PUBLIC_CHAT_API_URL.replace(/\/$/, "")
+          : "";
+      const res = await fetch(`${apiBase}/api/chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -345,6 +349,13 @@ export default function DiaryPage() {
               className="max-w-md rounded-lg bg-[#f5f0e6] p-8 shadow-xl"
               onClick={(e) => e.stopPropagation()}
             >
+              <div className="mb-6 flex justify-center">
+                <img
+                  src="/trlogo.svg"
+                  alt="Tom Riddle"
+                  className="h-10 w-auto"
+                />
+              </div>
               <div className="font-serif text-[#1a1510] leading-relaxed space-y-4">
                 <p>
                   &quot;Never trust something that can think for itself if you
